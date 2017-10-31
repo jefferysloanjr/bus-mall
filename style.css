@@ -1,0 +1,8 @@
+body {
+  width: 960px;
+}
+
+li img {
+  float: left;
+  margin: 5px;
+}
