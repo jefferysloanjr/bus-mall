@@ -5,4 +5,5 @@ body {
 li img {
   float: left;
   margin: 5px;
+  margin-right: 5px;
 }
