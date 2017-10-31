@@ -13,10 +13,11 @@ function Tracker(name, filepath) {
   this.totalClicks = 0;
 }
 
+// random pic generator
 function choosePic() {
   var randomNum = Math.floor(math.random() * allImages.length);
 }
-
+// click counter for pictures.
 firstSet.addEventListener('click', function() {
   counter++;
   var src = this.getAttribute('src');
