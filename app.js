@@ -45,8 +45,12 @@ var images = function (mame, file) {
 var Images = function (mame, file) {
 >>>>>>> added local storage
   this.name = name;
+<<<<<<< HEAD
   this.filePath = './img/' + name + ',' + file;
 >>>>>>> adjusted code added chart
+=======
+  this.filePath = './bm-img/' + name + ',' + file;
+>>>>>>> adjusted some code
   this.valid = true;
   this.shown = 0;
   this.timesClicked = 0;
@@ -422,6 +426,8 @@ var makeChart = function () {
   });
   localStorage.firstTime = false;
 };
+
+makeChart();
 
 
 var start = function () {
