@@ -27,6 +27,7 @@ var Images = function (mame, file) {
   this.timesClicked = 0;
 };
 
+<<<<<<< HEAD
 // all images to be called
 imageSet.push(
   new Images('bag', 'jpg'),
@@ -96,6 +97,19 @@ var oldSet = function () {
   imageSet[2].removeEventListenter('click', clickThree);
 };
 
+=======
+// random pic generator
+function choosePic() {
+  var randomNum = Math.floor(math.random() * allImages.length);
+}
+// click counter for pictures.
+firstSet.addEventListener('click', function() {
+  counter++;
+  var src = this.getAttribute('src');
+  console.log('img src', src);
+  console.log('total clicks', counter);
+});
+>>>>>>> made some changes
 
 // array for data
 var data = function () {
