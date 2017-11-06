@@ -21,7 +21,7 @@ var objClick = [];
 
 var Images = function (mame, file) {
   this.name = name;
-  this.filePath = './img/' + name + ',' + file;
+  this.filePath = './bm-img/' + name + ',' + file;
   this.valid = true;
   this.shown = 0;
   this.timesClicked = 0;
@@ -170,6 +170,8 @@ var makeChart = function () {
   });
   localStorage.firstTime = false;
 };
+
+makeChart();
 
 
 var start = function () {
