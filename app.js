@@ -3,6 +3,9 @@
 var lastImage = [1, 2, 3];
 var currentImages = [4, 5, 6];
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> added local storage
 
 var allImages = [];
 
@@ -32,11 +35,15 @@ var objShow = [];
 var objClick = [];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 var Images = function (mame, file) {
   this.name = name;
   this.filePath = './bm-img/' + name + ',' + file;
 =======
 var images = function (mame, file) {
+=======
+var Images = function (mame, file) {
+>>>>>>> added local storage
   this.name = name;
   this.filePath = './img/' + name + ',' + file;
 >>>>>>> adjusted code added chart
@@ -75,30 +82,34 @@ Images.prototype.imgTag = function () {
 =======
 // all images to be called
 imageSet.push(
-  new Image('bag', 'jpg'),
-  new Image('banana', 'jpg'),
-  new Image('bathroom', 'jpg'),
-  new Image('boots', 'jpg'),
-  new Image('breakfast', 'jpg'),
-  new Image('bubblegum', 'jpg'),
-  new Image('chair', 'jpg'),
-  new Image('cthulhu', 'jpg'),
-  new Image('dog-duck', 'jpg'),
-  new Image('dragon', 'jpg'),
-  new Image('pen', 'jpg'),
-  new Image('pet-sweep', 'jpg'),
-  new Image('scissors', 'jpg'),
-  new Image('shark', 'jpg'),
-  new Image('sweep', 'png'),
-  new Image('tauntaun', 'jpg'),
-  new Image('unicorn', 'jpg'),
-  new Image('usb', 'gif'),
-  new Image('water-can', 'jpg'),
-  new Image('wine-glass', 'jpg')
+  new Images('bag', 'jpg'),
+  new Images('banana', 'jpg'),
+  new Images('bathroom', 'jpg'),
+  new Images('boots', 'jpg'),
+  new Images('breakfast', 'jpg'),
+  new Images('bubblegum', 'jpg'),
+  new Images('chair', 'jpg'),
+  new Images('cthulhu', 'jpg'),
+  new Images('dog-duck', 'jpg'),
+  new Images('dragon', 'jpg'),
+  new Images('pen', 'jpg'),
+  new Images('pet-sweep', 'jpg'),
+  new Images('scissors', 'jpg'),
+  new Images('shark', 'jpg'),
+  new Images('sweep', 'png'),
+  new Images('tauntaun', 'jpg'),
+  new Images('unicorn', 'jpg'),
+  new Images('usb', 'gif'),
+  new Images('water-can', 'jpg'),
+  new Images('wine-glass', 'jpg')
 );
 
+<<<<<<< HEAD
 Image.prototype.imgTag = function () {
 >>>>>>> adjusted code added chart
+=======
+Images.prototype.imgTag = function () {
+>>>>>>> added local storage
   return '<img id="' + this.name + '" src="' + this.filePath + '" >';
 };
 
@@ -300,6 +311,7 @@ console.log('click', twoClick);
 console.log('click', threeClick);
 =======
 
+// loop for next set of images
 var nextImage = function () {
   for (var i = 0; i < imageSet.length; i++) {
     imageOne(lastImage[i]).valid = true;
@@ -310,15 +322,16 @@ var nextImage = function () {
     imageOne(currentImage[i]).valid = false;
   }
 };
+// end of next image loop
 
 var imageOne = function (list) {
-  return allImages[list];
+  return imageSet[list];
 };
 
 var newSet = function () {
   for (var m = 0; m < imageOne.length; m++) {
     imageSet[m].innerHTML = '';
-    imageSet[m].innerHTML = imageOne(currentImages[k]).imgTag();
+    imageSet[m].innerHTML = imageOne(currentImages[m]).imgTag();
   }
 };
 
@@ -333,17 +346,43 @@ var oldSet = function () {
   imageSet[0].removeEventListener('click', clickOne);
   imageSet[1].removeEventListener('click', clickTwo);
   imageSet[2].removeEventListenter('click', clickThree);
-  for (var j = 0; j < imageSet.length; j++) {
-    imageSet[m].style.visibility = 'hidden';
+};
+
+
+// array for data
+var data = function () {
+  for (var o = 0; o < allImages.length; o++) {
+    objImages[o] = localStorage['image name' + o];
+    objShow[o] = parseInt(localStorage['image showing' + o]);
+    objClick[o] = parseInt(localStorage['image clicked' + o]);
   }
 };
 
-var data = function () {
-  for (var o = 0; o < allImages.length; o++) {
-    objImages.push(allImages[o].name);
-    objShow.push(allImages[o].shown);
-    objClick.push(allImages[o].clicks);
+// a refresh for the page
+var refresh = function () {
+  newShown();
+  nextImage();
+  newSet();
+};
+
+// local storage functions
+
+var saveData = function () {
+  localStorage.saveCounter = twentyFive;
+  for (var saveOne = 0; saveOne < imageSet.length; saveOne++) {
+    localStorage['image name' + saveOne] = imageOne(saveOne).name;
+    localStorage['image shown' + saveOne] = imageOne(saveOne).imageOne.timesShown;
+    localStorage['image click' + saveOne] = imageOne(saveOne).timesClicked;
   }
+};
+
+// loading data from local storage
+var loadData = function () {
+  twentyFive = parseInt(localStorage.savedTwentyFive);
+  for (var load = 0; load < imageSet.length; load++)
+    imageOne(load).name = localStorage['image name' + load];
+  imageOne(load).timesShown = parseInt(localStorage['image shown' + load]);
+  imageOne(load).timesClicked = parseInt(localStorage['image clicked' + load]);
 };
 
 // Chart start
@@ -381,25 +420,29 @@ var makeChart = function () {
       }
     }
   });
+  localStorage.firstTime = false;
 };
 
-// function to reset page
-var resetPage = function () {
-  newShown();
-  nextImage();
-  newSet();
+
+var start = function () {
+  refresh();
+  if (localStorage.savedTwentyFive) {
+    loadData();
+  }
 };
 
-resetPage();
+start();
 
 imageSet[0].addEventListener('click', oneClick);
 imageSet[1].addEventListener('click', twoClick);
 imageSet[2].addEventListener('click', threeClick);
+reset.addEventListener('click', resetData);
 
 function oneClick (event) {
   if (twentyFive > 0) {
-    imageSet(currentImages[1]).timesClicked++;
+    imageSet(currentImages[0]).timesClicked++;
     refresh();
+    saveData();
     twentyFive--;
   } else {
     oldSet();
@@ -407,6 +450,19 @@ function oneClick (event) {
     makeChart();
   }
 }
+
+function twoClick (event) {
+  if (twentyFive > 0) {
+    imageOne(currentImages[1]).timesClicked++;
+    refresh();
+    saveData();
+    twentyFive--;
+  } else {
+    oldSet();
+    data();
+    makeChart();
+  }
+};
 
 function threeClick (event) {
   if (twentyFive > 0) {
@@ -418,5 +474,21 @@ function threeClick (event) {
     data();
     makeChart();
   }
+<<<<<<< HEAD
 }
 >>>>>>> adjusted code added chart
+=======
+};
+
+function resetData (event) {
+  start();
+  twentyFive();
+  localStorage.savedTwentyFive = twentyFive;
+  imageOne[0].addEventListener('click', oneClick);
+  imageOne[1].addEventListener('click', twoClick);
+  imageOne[2].addEventListener('click', threeClick);
+};
+console.log('click', oneClick);
+console.log('click', twoClick);
+console.log('click', threeClick);
+>>>>>>> added local storage
