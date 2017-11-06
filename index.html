@@ -7,19 +7,26 @@
     <link rel="stylesheet" href="style.css">
   </head>
 
+  <header>
+    <h1>Bus Mall</h1>
+    <canvas id="chart"></canvas>
+  </header>
+
   <body>
-    <main>
       <ul>
         <li>
-          <img id="toy" src=".\bm-img\cthulhu.jpg" width="300" height="300">
+          <img id="first-set">
         </li>
         <li>
-          <img id="bubblegum" src=".\bm-img\bubblegum.jpg" width="300" height="300">
+          <img id="second-set">
         </li>
         <li>
-          <img id="shark" src=".\bm-img\shark.jpg" width="300" height="300">
+          <img id="third-set">
         </li>
       <ul>
-    </main>
+      <canvas id="dataChart"></canvas>
+      <button id="rst-btn">Restart</button>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <script src="app.js"></script>
   </body>
 </html>
